@@ -1,13 +1,13 @@
 import numpy as np
 import pandas as pd
-from features import mfcc
-from features import logfbank
+from python_speech_features import mfcc
+from python_speech_features import logfbank
 import scipy.io.wavfile as wav
 from scipy.io.wavfile import write as wav_write
 import librosa
 import scikits.samplerate
 import os
-
+import shutil
 
 '''
 mfcc(signal, samplerate=16000, winlen=0.025, winstep=0.01, numcep=13, nfilt=26, nfft=512, lowfreq=0, highfreq=None, preemph=0.97, ceplifter=22, appendEnergy=True)

@@ -1,10 +1,10 @@
-import urllib
+import urllib.request
 import time
 from requests import get
 from bs4 import BeautifulSoup
 import pandas as pd
 import numpy as np
-
+import shutil
 
 # from the accent.gmu website, pass in list of languages to scrape mp3 files and save them to disk
 def mp3getter(lst):
@@ -12,7 +12,9 @@ def mp3getter(lst):
         for i in range(1,lst[j][1]+1):
             while True:
                 try:
-                    urllib.urlretrieve("http://accent.gmu.edu/soundtracks/{0}{1}.mp3".format(lst[j][0], i), '{0}{1}.mp3'.format(lst[j][0], i))
+                    print("Downloading")
+                    urllib.request.urlretrieve("http://accent.gmu.edu/soundtracks/{0}{1}.mp3".format(lst[j][0], i), '{0}{1}.mp3'.format(lst[j][0], i))
+                    print("Downloaded")
                 except:
                     time.sleep(2)
                 else:
@@ -113,3 +115,14 @@ def get_speaker_info(start, stop):
 def copy_files(lst, path):
     for filename in lst:
         shutil.copy2('{}.wav'.format(filename), '{}/{}.wav'.format(path, filename))
+
+
+if __name__=="__main__":
+    langauges=['hindi','kannada']
+    a=lang_pages(langauges)
+    print(a)
+    b=get_nums(a)
+    print(b)
+    new_list=[['hindi',b[0]],['kannada',b[1]]]
+    print(new_list)
+    mp3getter(new_list)
