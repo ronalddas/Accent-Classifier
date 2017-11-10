@@ -1,3 +1,15 @@
+'''
+
+    Frame the signal into short frames.
+    For each frame calculate the periodogram estimate of the power spectrum.
+    Apply the mel filterbank to the power spectra, sum the energy in each filter.
+    Take the logarithm of all filterbank energies.
+    Take the DCT of the log filterbank energies.
+    Keep DCT coefficients 2-13, discard the rest.
+
+MFCC Flow
+'''
+
 import numpy as np
 import pandas as pd
 from python_speech_features import mfcc
@@ -135,3 +147,6 @@ def make_mean_mfcc_df(folder):
     stacked = np.vstack(flat)
     df = pd.DataFrame(stacked)
     return df
+
+if __name__=="__main__":
+    get_two_secs()
