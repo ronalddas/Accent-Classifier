@@ -150,3 +150,8 @@ def make_mean_mfcc_df(folder):
 
 if __name__=="__main__":
     get_two_secs()
+    #DownSample The file
+
+    #final_function
+    make_mean_mfcc_df()
+    make_df_language_gender()
